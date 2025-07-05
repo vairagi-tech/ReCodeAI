@@ -27,7 +27,7 @@ ReCodeAi is an AI-powered, self-healing Python code generation pipeline. It leve
 
 ### 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone your-repo-url>](https://github.com/vairagi-tech/ReCodeAI.git
 cd ReCodeAi
 ```
 

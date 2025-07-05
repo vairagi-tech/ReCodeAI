@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Execution Logs - Self-Healing LLM Pipeline</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { background: #f5f5f5; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .nav { margin-bottom: 20px; }
+        .nav a { margin-right: 20px; text-decoration: none; color: #007cba; }
+        .nav a:hover { text-decoration: underline; }
+        .log-entry { background: white; padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #007cba; }
+        .log-entry.success { border-left-color: #28a745; }
+        .log-entry.failed { border-left-color: #dc3545; }
+        .log-meta { font-size: 0.9em; color: #666; margin-bottom: 10px; }
+        .log-prompt { font-weight: bold; margin-bottom: 10px; }
+        .log-stats { display: flex; gap: 15px; font-size: 0.9em; }
+        .log-stat { background: #f8f9fa; padding: 5px 10px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="/logs">View Logs</a>
+    </div>
+    
+    <h1>📊 Execution Logs</h1>
+    
+    <div class="container">
+        <p>Recent pipeline executions (last 10):</p>
+        
+        {% if logs %}
+            {% for log in logs|reverse %}
+                <div class="log-entry {% if log.success %}success{% else %}failed{% endif %}">
+                    <div class="log-meta">
+                        {{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }} - 
+                        {% if log.success %}✅ Success{% else %}❌ Failed{% endif %}
+                    </div>
+                    <div class="log-prompt">{{ log.prompt }}</div>
+                    <div class="log-stats">
+                        <div class="log-stat">{{ log.iteration_count }} iterations</div>
+                        <div class="log-stat">{{ "%.2f"|format(log.total_time) }}s</div>
+                        <div class="log-stat">{{ log.errors_encountered|length }} errors</div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No execution logs yet. <a href="/">Generate some code</a> to see logs here.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/vairagi/Desktop/New Folder/.venv/bin/python3.10" "$0" "$@"
-' '''
+#!/home/vairagi/Desktop/ReCodeAI/.venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

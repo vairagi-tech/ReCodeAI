@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/vairagi/Desktop/New Folder/.venv"
+VIRTUAL_ENV="/home/vairagi/Desktop/ReCodeAI/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

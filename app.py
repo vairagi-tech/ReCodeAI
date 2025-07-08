@@ -262,7 +262,8 @@ class SelfHealingPipeline:
                 continue
             
             # Test the test cases
-            test_result = self.code_executor.execute_code(test_code)
+            combined_code = f"{main_code}\n\n{test_code}"
+            test_result = self.code_executor.execute_code(combined_code)
             if not test_result.success:
                 error_msg = f"Test code error (iteration {iteration_count}): {test_result.error}"
                 errors_encountered.append(error_msg)
@@ -378,6 +379,6 @@ if __name__ == "__main__":
     
     print(" Starting Self-Healing LLM Pipeline server...")
     print(" Make sure to set your GEMINI_API_KEY environment variable!")
-    print(" Open http://localhost:8000 in your browser")
+    print(" Open http://localhost:8001 in your browser")
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8001)
